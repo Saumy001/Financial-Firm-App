@@ -6,9 +6,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Link from "next/link"
+import { useRouter } from "next/navigation";
+
 
 export function ProfileCard() {
   const [selectedFirm, setSelectedFirm] = useState("9000")
+          const router = useRouter();
+  
 
   return (
     
@@ -20,18 +24,18 @@ export function ProfileCard() {
           <span>SS</span>
         </div>
         <h1 className="mb-2 text-center text-2xl font-bold text-gray-900">Saumy Sharma</h1>
-        <p className="text-center text-gray-600">4 Available firm(s)</p>
+        <p className="text-center text-gray-600">4 Available Org(s)</p>
         <p className="text-center text-gray-600">
-          Role: <span className="font-medium">Administrator</span>
+          Role: <span className="font-medium">Org Admin</span>
         </p>
       </div>
 
       {/* Right side - Session Setup */}
       <div className="mt-8 md:mt-0 md:w-2/3 md:pl-10">
-        <h2 className="mb-6 text-xl font-semibold text-gray-800 ">Session Setup</h2>
+        <h2 className="mb-6 text-xl font-semibold text-gray-800 ">User Profile</h2>
 
         <div className="mb-6">
-          <label className="mb-2 block text-sm font-medium text-gray-700">Select Firm</label>
+          <label className="mb-2 block text-sm font-medium text-gray-700">Select Org</label>
           <div className="relative">
           <select
   id="firm"
@@ -39,9 +43,10 @@ export function ProfileCard() {
   className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
   aria-label="Select Firm"
 >
-  <option value="100" selected>HDFC Bank - Firm Id: 100</option>
-  <option value="101">ICICI Bank - Firm Id: 101</option>
-  <option value="102">Axis Bank - Firm Id: 102</option>
+  <option value="100" selected>100 - HDFC BANK</option>
+  <option value="101">101 - ICICI Bank </option>
+  <option value="102">102 - Axis Bank </option>
+  <option value="102">104 - PNB Bank </option>
 </select>
 
             <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -72,9 +77,9 @@ export function ProfileCard() {
   className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
   aria-label="Select Firm"
 >
-<option value="retail">Retail Banking</option>
-                <option value="corporate">Corporate Banking</option>
-                <option value="investment">Investment Banking</option>
+<option value="retail">Institutional</option>
+                <option value="corporate">Private Equity</option>
+                <option value="investment">Hedge Fund</option>
 </select>
 
             <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -101,10 +106,10 @@ export function ProfileCard() {
             <span className="font-medium text-gray-700">Email:</span>{" "}
             <span className="text-gray-600">saumys@example.com</span>
           </div>
-          <div className="mb-2">
+          {/* <div className="mb-2">
             <span className="font-medium text-gray-700">Role:</span>{" "}
-            <span className="text-gray-600">Administrator</span>
-          </div>
+            <span className="text-gray-600">Admin</span>
+          </div> */}
           <div>
             <span className="font-medium text-gray-700">Last Login:</span>{" "}
             <span className="text-gray-600">2024-06-10 09:45 AM</span>
@@ -112,9 +117,9 @@ export function ProfileCard() {
         </div>
 
         <div className="flex justify-end">
-          <Link
-            href="/profile/edit"
+          <button
             className="flex items-center rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
+            onClick={()=> router.push('/reporting')}
           >
             Change Profile
             <svg className="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +131,7 @@ export function ProfileCard() {
                 strokeLinejoin="round"
               />
             </svg>
-          </Link>
+          </button>
         </div>
       </div>
     </div>

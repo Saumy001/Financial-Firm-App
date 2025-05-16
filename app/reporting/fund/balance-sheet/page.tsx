@@ -1,29 +1,27 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, ChevronDown, ChevronLeft, Edit, FileText, Folder, Save, X, ClipboardList } from "lucide-react"
+import { Calendar, ChevronDown, ChevronLeft, Edit, FileText, Folder, Save, X, ClipboardList, SlidersHorizontal } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/header"
 import ReportingLayout from "@/components/reportingLayout"
 
-export default function IncomeStatementReport() {
+export default function BalanceSheetReport() {
   const [drawerOpen, setDrawerOpen] = useState(true)
   const [financialsOpen, setFinancialsOpen] = useState(true)
   const [hedgeFundsOpen, setHedgeFundsOpen] = useState(false)
   const [privateCapitalOpen, setPrivateCapitalOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
 
-      const router = useRouter();
-
+    const router = useRouter();
   
 
   return (
     <div className="flex h-screen flex-col">
       {/* Header */}
       <Header />
-
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
 <ReportingLayout/>
@@ -47,8 +45,8 @@ export default function IncomeStatementReport() {
 
           {/* Report Header */}
           <div className="border-b border-gray-200 px-6 py-4">
-            <h1 className="text-2xl font-semibold text-gray-800">Income Statement</h1>
-            <div className="mt-1 text-sm text-gray-500">Base report id: 31024</div>
+            <h1 className="text-2xl font-semibold text-gray-800">Balance Sheet</h1>
+            <div className="mt-1 text-sm text-gray-500">Base report id: 1004</div>
           </div>
 
           {/* Report Parameters */}
@@ -71,17 +69,7 @@ export default function IncomeStatementReport() {
                 </div>
                 <div className="ml-3 flex items-center">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                    <svg
-                      className="h-5 w-5 text-blue-500"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M19.14 12.94C19.18 12.64 19.2 12.33 19.2 12C19.2 11.68 19.18 11.36 19.13 11.06C19.05 10.46 18.9 9.87 18.7 9.31C18.32 8.05 17.64 6.9 16.74 5.93C16.11 5.24 15.36 4.64 14.55 4.16C14.14 3.91 13.71 3.71 13.27 3.53C12.3 3.11 11.25 2.89 10.2 2.89C9.15 2.89 8.1 3.11 7.13 3.53C6.69 3.71 6.26 3.91 5.85 4.16C5.04 4.64 4.29 5.24 3.66 5.93C2.76 6.9 2.08 8.05 1.7 9.31C1.5 9.87 1.35 10.46 1.27 11.06C1.22 11.36 1.2 11.68 1.2 12C1.2 12.33 1.22 12.64 1.26 12.94C1.34 13.54 1.49 14.13 1.69 14.69C2.07 15.95 2.75 17.1 3.65 18.07C4.28 18.76 5.03 19.36 5.84 19.84C6.25 20.09 6.68 20.29 7.12 20.47C8.09 20.89 9.14 21.11 10.19 21.11C11.24 21.11 12.29 20.89 13.26 20.47C13.7 20.29 14.13 20.09 14.54 19.84C15.35 19.36 16.1 18.76 16.73 18.07C17.63 17.1 18.31 15.95 18.69 14.69C18.89 14.13 19.04 13.54 19.12 12.94H19.14ZM10.2 16.89C7.86 16.89 5.96 15 5.96 12.67C5.96 10.34 7.86 8.44 10.2 8.44C12.54 8.44 14.44 10.34 14.44 12.67C14.44 15 12.54 16.89 10.2 16.89Z"
-                        fill="currentColor"
-                      />
-                    </svg>
+                  <SlidersHorizontal size={20}/>
                   </div>
                   <span className="ml-2 font-medium">Parameters</span>
                 </div>
@@ -100,7 +88,11 @@ export default function IncomeStatementReport() {
                     <span className="ml-1">None</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="font-medium">As Of Date:</span>
+                    <span className="font-medium">Start Date:</span>
+                    <span className="ml-1">05/12/2025</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="font-medium">End Date:</span>
                     <span className="ml-1">05/12/2025</span>
                   </div>
                 </div>
@@ -146,7 +138,16 @@ export default function IncomeStatementReport() {
                   <label className="mb-1 block text-sm font-medium text-gray-700">Dynamic Date</label>
                   <div className="relative">
                     <select className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
-                      <option>None</option>
+                    <option>None</option>
+                      <option>Today</option>
+                      <option>Yesterday</option>
+                      <option>Tomorrow</option>
+                      <option>Previous Week Start</option>
+                      <option>Previous Week End</option>
+                      <option>Previous Month Start</option>
+                      <option>Previous Month End</option>
+                      <option>Previous Year Start</option>
+                      <option>Previous Year End</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                       <ChevronDown className="h-4 w-4" />
@@ -155,11 +156,24 @@ export default function IncomeStatementReport() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-gray-700">As Of Date</label>
+                  <label className="mb-1 block text-sm font-medium text-gray-700">Start Date</label>
                   <div className="relative">
                     <input
                       type="text"
                       value="12-05-2025"
+                      className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    />
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <Calendar className="h-4 w-4" />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label className="mb-1 block text-sm font-medium text-gray-700">End Date</label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value="12-06-2025"
                       className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

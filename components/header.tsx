@@ -1,3 +1,5 @@
+'use client';
+
 import { ChevronDown, ClipboardList } from "lucide-react"
 import { useRouter } from "next/navigation";
 import { useState } from "react"
@@ -11,15 +13,17 @@ export function Header() {
     <header className="flex h-16 items-center justify-between bg-blue-900 px-4">
     <div className="flex items-center">
     <div className="mr-4 text-white">
-  <ClipboardList size={24} />
+  <ClipboardList size={24} onClick={() => router.push('/reporting')}
+      className="cursor-pointer" />
 </div>
 <div className="flex items-center rounded bg-[#325c98] px-4 py-2">
   <div className="relative">
     <select
       className="appearance-none bg-[#325c98] pr-8 text-white outline-none"
-      defaultValue="reporting"
+      defaultValue="reporting" 
+      
     >
-      <option value="reporting">Reporting</option>
+      <option value="reporting" >Reporting</option>
       <option value="analytics">Analytics</option>
       <option value="insights">Insights</option>
     </select>

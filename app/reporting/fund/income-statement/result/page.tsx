@@ -1,32 +1,50 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, ChevronDown, ChevronLeft, Edit, FileText, Folder, Save, X, ClipboardList } from "lucide-react"
-import Image from "next/image"
+import { Calendar, ChevronDown, ChevronUp, Edit, Save, SlidersHorizontal, X } from "lucide-react"
 import Link from "next/link"
-import { useRouter } from "next/navigation";
 import { Header } from "@/components/header"
 import ReportingLayout from "@/components/reportingLayout"
 
-export default function BalanceSheetReport() {
-  const [drawerOpen, setDrawerOpen] = useState(true)
+export default function IncomeStatementResults() {
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const [financialsOpen, setFinancialsOpen] = useState(true)
   const [hedgeFundsOpen, setHedgeFundsOpen] = useState(false)
   const [privateCapitalOpen, setPrivateCapitalOpen] = useState(false)
-  const [profileOpen, setProfileOpen] = useState(false)
 
-    const router = useRouter();
-  
+  // Income statement data
+  const reportData = [
+    { type: "EXPENSE", description: "ACCOUNTING FEES", amount: -9018.75 },
+    { type: "INCOME", description: "ACCRETION OF DISCOUNT", amount: 257577.71 },
+    { type: "EXPENSE", description: "AUDIT FEES", amount: -5681.25 },
+    { type: "EXPENSE", description: "BANK CHARGES", amount: -1863.47 },
+    { type: "EXPENSE", description: "CONSULTING FEES", amount: -36292.86 },
+    { type: "EXPENSE", description: "INSURANCE EXPENSE", amount: 8555.93 },
+    { type: "INCOME", description: "INVESTMENT INTEREST INCOME", amount: 1339004.13 },
+    { type: "EXPENSE", description: "LEGAL FEES", amount: -83.37 },
+  ]
+
+  // Format currency
+  const formatCurrency = (amount: number) => {
+    const absAmount = Math.abs(amount)
+    const formatted = new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(absAmount)
+
+    return amount < 0 ? `-$${formatted}` : `$${formatted}`
+  }
 
   return (
     <div className="flex h-screen flex-col">
       {/* Header */}
-      <Header />
+      <Header/>
+
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-<ReportingLayout/>
+        <ReportingLayout/>
 
-        {/* Main Content - Report Page */}
+        {/* Main Content - Report Results */}
         <div className="flex-1 overflow-auto">
           {/* Breadcrumb */}
           <div className="border-b border-gray-200 bg-gray-50 px-6 py-2">
@@ -45,8 +63,8 @@ export default function BalanceSheetReport() {
 
           {/* Report Header */}
           <div className="border-b border-gray-200 px-6 py-4">
-            <h1 className="text-2xl font-semibold text-gray-800">Balance Sheet</h1>
-            <div className="mt-1 text-sm text-gray-500">Base report id: 31024</div>
+            <h1 className="text-2xl font-semibold text-gray-800">Income Statement</h1>
+            <div className="mt-1 text-sm text-gray-500">Base report id: 1005</div>
           </div>
 
           {/* Report Parameters */}
@@ -69,17 +87,7 @@ export default function BalanceSheetReport() {
                 </div>
                 <div className="ml-3 flex items-center">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                    <svg
-                      className="h-5 w-5 text-blue-500"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M19.14 12.94C19.18 12.64 19.2 12.33 19.2 12C19.2 11.68 19.18 11.36 19.13 11.06C19.05 10.46 18.9 9.87 18.7 9.31C18.32 8.05 17.64 6.9 16.74 5.93C16.11 5.24 15.36 4.64 14.55 4.16C14.14 3.91 13.71 3.71 13.27 3.53C12.3 3.11 11.25 2.89 10.2 2.89C9.15 2.89 8.1 3.11 7.13 3.53C6.69 3.71 6.26 3.91 5.85 4.16C5.04 4.64 4.29 5.24 3.66 5.93C2.76 6.9 2.08 8.05 1.7 9.31C1.5 9.87 1.35 10.46 1.27 11.06C1.22 11.36 1.2 11.68 1.2 12C1.2 12.33 1.22 12.64 1.26 12.94C1.34 13.54 1.49 14.13 1.69 14.69C2.07 15.95 2.75 17.1 3.65 18.07C4.28 18.76 5.03 19.36 5.84 19.84C6.25 20.09 6.68 20.29 7.12 20.47C8.09 20.89 9.14 21.11 10.19 21.11C11.24 21.11 12.29 20.89 13.26 20.47C13.7 20.29 14.13 20.09 14.54 19.84C15.35 19.36 16.1 18.76 16.73 18.07C17.63 17.1 18.31 15.95 18.69 14.69C18.89 14.13 19.04 13.54 19.12 12.94H19.14ZM10.2 16.89C7.86 16.89 5.96 15 5.96 12.67C5.96 10.34 7.86 8.44 10.2 8.44C12.54 8.44 14.44 10.34 14.44 12.67C14.44 15 12.54 16.89 10.2 16.89Z"
-                        fill="currentColor"
-                      />
-                    </svg>
+                  <SlidersHorizontal size={20}/>
                   </div>
                   <span className="ml-2 font-medium">Parameters</span>
                 </div>
@@ -99,7 +107,7 @@ export default function BalanceSheetReport() {
                   </div>
                   <div className="flex items-center">
                     <span className="font-medium">As Of Date:</span>
-                    <span className="ml-1">05/12/2025</span>
+                    <span className="ml-1">12/31/2024</span>
                   </div>
                 </div>
 
@@ -144,7 +152,16 @@ export default function BalanceSheetReport() {
                   <label className="mb-1 block text-sm font-medium text-gray-700">Dynamic Date</label>
                   <div className="relative">
                     <select className="w-full appearance-none rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
-                      <option>None</option>
+                    <option>None</option>
+                      <option>Today</option>
+                      <option>Yesterday</option>
+                      <option>Tomorrow</option>
+                      <option>Previous Week Start</option>
+                      <option>Previous Week End</option>
+                      <option>Previous Month Start</option>
+                      <option>Previous Month End</option>
+                      <option>Previous Year Start</option>
+                      <option>Previous Year End</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                       <ChevronDown className="h-4 w-4" />
@@ -157,7 +174,7 @@ export default function BalanceSheetReport() {
                   <div className="relative">
                     <input
                       type="text"
-                      value="12-05-2025"
+                      value="31-12-2024"
                       className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -181,32 +198,102 @@ export default function BalanceSheetReport() {
                   <Save className="mr-2 h-4 w-4" />
                   Save
                 </button>
-                <button className="ml-auto flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
-                  <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 9H15V3H9V9H5L12 16L19 9ZM5 18V20H19V18H5Z" fill="currentColor" />
-                  </svg>
-                  Export
-                </button>
+
+                <div className="ml-auto flex items-center">
+                  <div className="mr-4 flex items-center">
+                    <div className="mr-2 h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
+                    <span className="text-sm text-gray-600">Unsaved changes</span>
+                  </div>
+                  <button className="flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
+                    <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19 9H15V3H9V9H5L12 16L19 9ZM5 18V20H19V18H5Z" fill="currentColor" />
+                    </svg>
+                    Export
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Report Content - Empty State */}
-          <div className="flex flex-1 flex-col items-center justify-center p-8">
-            <div className="mb-8 max-w-md">
-              <Image
-                src="/placeholder.svg?height=200&width=300"
-                alt="Report illustration"
-                width={300}
-                height={200}
-                className="mx-auto mb-6"
-              />
-              <h2 className="mb-4 text-center text-2xl font-bold text-gray-800">Start analyzing</h2>
-              <p className="text-center text-gray-600">
-                To begin, modify the parameters in the panel above. Then, press "Run report".
-                <br />
-                Your data will populate on this page in a grid.
-              </p>
+          {/* Report Data Grid */}
+          <div className="p-6">
+            {/* Drag and Drop Instruction */}
+            <div className="mb-4 rounded-md border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
+              <div className="flex items-center">
+                <svg
+                  className="mr-2 h-5 w-5 text-gray-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor" />
+                </svg>
+                This area enables drag and drop grouping on any field marked as "groupable" in your field configuration.
+              </div>
+            </div>
+
+            {/* Data Grid */}
+            <div className="overflow-x-auto rounded-lg border border-gray-200">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                    >
+                      <div className="flex items-center">
+                        GL Sub Account
+                        <svg
+                          className="ml-1 h-4 w-4 text-gray-400"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M7 10L12 15L17 10H7Z" fill="currentColor" />
+                        </svg>
+                      </div>
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                    >
+                      <div className="flex items-center">
+                        Account Description
+                        <ChevronUp className="ml-1 h-4 w-4 text-gray-900" />
+                      </div>
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500"
+                    >
+                      <div className="flex items-center justify-end">
+                        PTD Balance
+                        <svg
+                          className="ml-1 h-4 w-4 text-gray-400"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M7 10L12 15L17 10H7Z" fill="currentColor" />
+                        </svg>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 bg-white">
+                  {reportData.map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">{item.type}</td>
+                      <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">{item.description}</td>
+                      <td
+                        className={`whitespace-nowrap px-6 py-4 text-right text-sm ${item.amount < 0 ? "text-red-600" : "text-gray-900"}`}
+                      >
+                        {formatCurrency(item.amount)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
