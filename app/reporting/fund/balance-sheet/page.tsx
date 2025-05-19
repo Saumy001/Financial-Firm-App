@@ -7,6 +7,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/header"
 import ReportingLayout from "@/components/reportingLayout"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function BalanceSheetReport() {
   const [drawerOpen, setDrawerOpen] = useState(true)
@@ -14,6 +16,8 @@ export default function BalanceSheetReport() {
   const [hedgeFundsOpen, setHedgeFundsOpen] = useState(false)
   const [privateCapitalOpen, setPrivateCapitalOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
+  const [startDate, setStartDate] = useState<Date | null>(new Date("2025-05-12"))
+const [endDate, setEndDate] = useState<Date | null>(new Date("2025-05-12"))
 
     const router = useRouter();
   
@@ -158,11 +162,12 @@ export default function BalanceSheetReport() {
                 <div>
                   <label className="mb-1 block text-sm font-medium text-gray-700">Start Date</label>
                   <div className="relative">
-                    <input
-                      type="text"
-                      value="12-05-2025"
-                      className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
+                    <DatePicker
+                                          selected={startDate}
+                                          onChange={(date) => setStartDate(date)}
+                                          dateFormat="dd-MM-yyyy"
+                                          className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                        />
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                       <Calendar className="h-4 w-4" />
                     </div>
@@ -171,11 +176,12 @@ export default function BalanceSheetReport() {
                 <div>
                   <label className="mb-1 block text-sm font-medium text-gray-700">End Date</label>
                   <div className="relative">
-                    <input
-                      type="text"
-                      value="12-06-2025"
-                      className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
+                    <DatePicker
+                                          selected={startDate}
+                                          onChange={(date) => setStartDate(date)}
+                                          dateFormat="dd-MM-yyyy"
+                                          className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                        />
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                       <Calendar className="h-4 w-4" />
                     </div>

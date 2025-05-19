@@ -11,7 +11,7 @@ import { Header } from "../../components/header"
 import ReportingLayout from "@/components/reportingLayout"
 
 
-export default function Dashboard() {
+export default function Reporting() {
   const [drawerOpen, setDrawerOpen] = useState(true)
   const [financialsOpen, setFinancialsOpen] = useState(true)
   const [hedgeFundsOpen, setHedgeFundsOpen] = useState(false)

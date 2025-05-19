@@ -1,12 +1,20 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, ChevronDown, ChevronLeft, Edit, FileText, Folder, Save, X, ClipboardList, SlidersHorizontal } from "lucide-react"
+import {
+  Calendar as CalendarIcon,
+  ChevronDown,
+  Edit,
+  Save,
+  SlidersHorizontal
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
 import { Header } from "@/components/header"
 import ReportingLayout from "@/components/reportingLayout"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function HFfund() {
   const [drawerOpen, setDrawerOpen] = useState(true)
@@ -15,20 +23,19 @@ export default function HFfund() {
   const [privateCapitalOpen, setPrivateCapitalOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
 
-      const router = useRouter();
+  const [startDate, setStartDate] = useState<Date | null>(new Date("2025-05-12"))
+const [endDate, setEndDate] = useState<Date | null>(new Date("2025-05-12"))
 
-  
+
+  const router = useRouter()
 
   return (
     <div className="flex h-screen flex-col">
-      {/* Header */}
       <Header />
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-<ReportingLayout/>
+        <ReportingLayout />
 
-        {/* Main Content - Report Page */}
         <div className="flex-1 overflow-auto">
           {/* Breadcrumb */}
           <div className="border-b border-gray-200 bg-gray-50 px-6 py-2">
@@ -54,15 +61,9 @@ export default function HFfund() {
           {/* Report Parameters */}
           <div className="border-b border-gray-200 px-6 py-4">
             <div className="rounded-lg border border-gray-200 bg-white">
-              {/* Parameters Header */}
               <div className="flex items-center border-b border-gray-200 px-4 py-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
-                  <svg
-                    className="h-5 w-5 text-gray-500"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 7H13V13H11V7ZM11 15H13V17H11V15Z"
                       fill="currentColor"
@@ -71,7 +72,7 @@ export default function HFfund() {
                 </div>
                 <div className="ml-3 flex items-center">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                    <SlidersHorizontal size={20}/>
+                    <SlidersHorizontal size={20} />
                   </div>
                   <span className="ml-2 font-medium">Parameters</span>
                 </div>
@@ -96,7 +97,7 @@ export default function HFfund() {
                 </div>
 
                 <button className="ml-auto flex items-center rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                  <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M17.65 6.35C16.2 4.9 14.21 4 12 4C7.58 4 4.01 7.58 4.01 12C4.01 16.42 7.58 20 12 20C15.73 20 18.84 17.45 19.73 14H17.65C16.83 16.33 14.61 18 12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C13.66 6 15.14 6.69 16.22 7.78L13 11H20V4L17.65 6.35Z"
                       fill="currentColor"
@@ -108,6 +109,7 @@ export default function HFfund() {
 
               {/* Parameters Form */}
               <div className="grid grid-cols-4 gap-6 p-4">
+                {/* ... Event Code, Application Code, Status Code - unchanged ... */}
                 <div>
                   <label className="mb-1 block text-sm font-medium text-gray-700">Event Code</label>
                   <div className="relative">
@@ -150,38 +152,38 @@ export default function HFfund() {
                   </div>
                 </div>
 
+                {/* Start Date */}
                 <div>
                   <label className="mb-1 block text-sm font-medium text-gray-700">Start Date</label>
                   <div className="relative">
-                    <input
-                      type="text"
-                      value="12-05-2025"
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      dateFormat="dd-MM-yyyy"
                       className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                      <Calendar className="h-4 w-4" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <CalendarIcon className="h-4 w-4" />
                     </div>
                   </div>
                 </div>
 
+                {/* End Date */}
                 <div>
                   <label className="mb-1 block text-sm font-medium text-gray-700">End Date</label>
                   <div className="relative">
-                    <input
-                      type="text"
-                      value="12-05-2025"
+                    <DatePicker
+                      selected={endDate}
+                      onChange={(date) => setEndDate(date)}
+                      dateFormat="dd-MM-yyyy"
                       className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                     />
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                      <Calendar className="h-4 w-4" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <CalendarIcon className="h-4 w-4" />
                     </div>
                   </div>
                 </div>
-
               </div>
-
-
-
 
               {/* Action Buttons */}
               <div className="flex border-t border-gray-200 p-4">
@@ -190,24 +192,18 @@ export default function HFfund() {
                   Edit
                 </button>
                 <button className="ml-3 flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
-                  <Calendar className="mr-2 h-4 w-4" />
+                  <CalendarIcon className="mr-2 h-4 w-4" />
                   Schedule
                 </button>
                 <button className="ml-3 flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
                   <Save className="mr-2 h-4 w-4" />
                   Save
                 </button>
-                <button className="ml-auto flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
-                  <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 9H15V3H9V9H5L12 16L19 9ZM5 18V20H19V18H5Z" fill="currentColor" />
-                  </svg>
-                  Export
-                </button>
               </div>
             </div>
           </div>
 
-          {/* Report Content - Empty State */}
+          {/* Report Content */}
           <div className="flex flex-1 flex-col items-center justify-center p-8">
             <div className="mb-8 max-w-md">
               <Image

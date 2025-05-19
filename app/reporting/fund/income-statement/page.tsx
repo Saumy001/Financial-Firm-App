@@ -1,12 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, ChevronDown, ChevronLeft, Edit, FileText, Folder, Save, X, ClipboardList, SlidersHorizontal } from "lucide-react"
+import { Calendar , ChevronDown, ChevronLeft, Edit, FileText, Folder, Save, X, ClipboardList, SlidersHorizontal } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/header"
 import ReportingLayout from "@/components/reportingLayout"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function IncomeStatementReport() {
   const [drawerOpen, setDrawerOpen] = useState(true)
@@ -14,6 +16,9 @@ export default function IncomeStatementReport() {
   const [hedgeFundsOpen, setHedgeFundsOpen] = useState(false)
   const [privateCapitalOpen, setPrivateCapitalOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
+  const [startDate, setStartDate] = useState<Date | null>(new Date("2025-05-12"))
+  const [endDate, setEndDate] = useState<Date | null>(new Date("2025-05-12"))
+
 
       const router = useRouter();
 
@@ -156,13 +161,14 @@ export default function IncomeStatementReport() {
                 <div>
                   <label className="mb-1 block text-sm font-medium text-gray-700">As Of Date</label>
                   <div className="relative">
-                    <input
-                      type="text"
-                      value="12-05-2025"
-                      className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                      <Calendar className="h-4 w-4" />
+                    <DatePicker
+                                          selected={startDate}
+                                          onChange={(date) => setStartDate(date)}
+                                          dateFormat="dd-MM-yyyy"
+                                          className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                        />
+                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                          <Calendar className="h-4 w-4" />
                     </div>
                   </div>
                 </div>
@@ -174,7 +180,7 @@ export default function IncomeStatementReport() {
                   <Edit className="mr-2 h-4 w-4" />
                   Edit
                 </button>
-                <button className="ml-3 flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
+                <button className="ml-3 f  lex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
                   <Calendar className="mr-2 h-4 w-4" />
                   Schedule
                 </button>
