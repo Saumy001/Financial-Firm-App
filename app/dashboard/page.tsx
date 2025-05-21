@@ -265,7 +265,161 @@ export default function Dashboard() {
           </div>
         </div>
 
-  
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {/* Market Value Trend */}
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <h3 className="mb-4 text-base font-medium text-gray-700">Market Value Trend</h3>
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={marketValueTrendData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                  <defs>
+                    <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                  <XAxis
+                    dataKey="date"
+                    tick={{ fontSize: 12 }}
+                    tickFormatter={(value) => {
+                      const date = new Date(value)
+                      return date.toLocaleDateString("en-US", { month: "numeric", year: "2-digit" })
+                    }}
+                  />
+                  <YAxis
+                    domain={["dataMin - 100", "dataMax + 100"]}
+                    tickFormatter={(value) => `${value.toLocaleString()}`}
+                    tick={{ fontSize: 12 }}
+                  />
+                  <Tooltip
+                    formatter={(value) => [`$${value.toLocaleString()} M`, "Market Value"]}
+                    labelFormatter={(label) => `Date: ${label}`}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="value"
+                    stroke="#0ea5e9"
+                    strokeWidth={2}
+                    dot={{ r: 4, strokeWidth: 2 }}
+                    activeDot={{ r: 6 }}
+                  />
+                  <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                  <area type="monotone" dataKey="value" stroke="#0ea5e9" fillOpacity={1} fill="url(#colorValue)" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Asset Allocation */}
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <h3 className="mb-4 text-base font-medium text-gray-700">Asset Allocation</h3>
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={assetAllocationData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={true}
+                    outerRadius={100}
+                    innerRadius={60}
+                    fill="#8884d8"
+                    dataKey="value"
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  >
+                    {assetAllocationData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[entry.name] || "#000"} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(value) => [`${value}%`, "Allocation"]} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Asset Allocation Trend */}
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <h3 className="mb-4 text-base font-medium text-gray-700">Asset Allocation Trend</h3>
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={assetAllocationTrendData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
+                  <YAxis tickFormatter={(value) => `${value}%`} />
+                  <Tooltip formatter={(value) => [`${value}%`, ""]} />
+                  <Area
+                    type="monotone"
+                    dataKey="Equity"
+                    stackId="1"
+                    stroke={COLORS["Equity"]}
+                    fill={COLORS["Equity"]}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="Private Equity"
+                    stackId="1"
+                    stroke={COLORS["Private Equity"]}
+                    fill={COLORS["Private Equity"]}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="Fixed Income"
+                    stackId="1"
+                    stroke={COLORS["Fixed Income"]}
+                    fill={COLORS["Fixed Income"]}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="Private Debt"
+                    stackId="1"
+                    stroke={COLORS["Private Debt"]}
+                    fill={COLORS["Private Debt"]}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="Real Estate"
+                    stackId="1"
+                    stroke={COLORS["Real Estate"]}
+                    fill={COLORS["Real Estate"]}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="Commodities"
+                    stackId="1"
+                    stroke={COLORS["Commodities"]}
+                    fill={COLORS["Commodities"]}
+                  />
+                  <Area type="monotone" dataKey="Cash" stackId="1" stroke={COLORS["Cash"]} fill={COLORS["Cash"]} />
+                  <Legend />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Unrealized G/L by Asset Class */}
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <h3 className="mb-4 text-base font-medium text-gray-700">Unrealized G/L by Asset Class</h3>
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={unrealizedGLData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis tickFormatter={(value) => `${value}M`} />
+                  <Tooltip formatter={(value) => [`$${value}M`, "Unrealized G/L"]} />
+                  <Bar dataKey="value">
+                    {unrealizedGLData.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={entry.value >= 0 ? COLORS[entry.name] || "#0ea5e9" : "#ef4444"}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
