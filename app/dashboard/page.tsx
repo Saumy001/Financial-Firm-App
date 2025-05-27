@@ -21,70 +21,52 @@ import {
 } from "recharts"
 
 export default function Dashboard() {
-  // Market Value Trend data
+  // Market Value Trend data (4/30/2023 to 4/30/2025)
   const marketValueTrendData = [
-    { date: "9/30/2022", value: 2450 },
-    { date: "10/31/2022", value: 2520 },
-    { date: "11/30/2022", value: 2580 },
-    { date: "12/31/2022", value: 2650 },
-    { date: "1/31/2023", value: 2780 },
-    { date: "2/28/2023", value: 2800 },
-    { date: "3/31/2023", value: 2830 },
-    { date: "4/30/2023", value: 2810 },
-    { date: "5/31/2023", value: 2850 },
-    { date: "6/30/2023", value: 2920 },
-    { date: "7/31/2023", value: 2980 },
-    { date: "8/31/2023", value: 2950 },
-    { date: "9/30/2023", value: 2790 },
+    { date: "4/30/2023", value: 3200 },
+    { date: "5/31/2023", value: 3280 },
+    { date: "6/30/2023", value: 3350 },
+    { date: "7/31/2023", value: 3420 },
+    { date: "8/31/2023", value: 3380 },
+    { date: "9/30/2023", value: 3450 },
+    { date: "10/31/2023", value: 3520 },
+    { date: "11/30/2023", value: 3580 },
+    { date: "12/31/2023", value: 3650 },
+    { date: "1/31/2024", value: 3720 },
+    { date: "2/29/2024", value: 3680 },
+    { date: "3/31/2024", value: 3750 },
+    { date: "4/30/2024", value: 3820 },
+    { date: "5/31/2024", value: 3890 },
+    { date: "6/30/2024", value: 3950 },
+    { date: "7/31/2024", value: 4020 },
+    { date: "8/31/2024", value: 3980 },
+    { date: "9/30/2024", value: 4050 },
+    { date: "10/31/2024", value: 4120 },
+    { date: "11/30/2024", value: 4180 },
+    { date: "12/31/2024", value: 4250 },
+    { date: "1/31/2025", value: 4320 },
+    { date: "2/28/2025", value: 4280 },
+    { date: "3/31/2025", value: 4350 },
+    { date: "4/30/2025", value: 4420 },
   ]
 
-  // Asset Allocation data
+  // Asset Allocation data (updated values)
   const assetAllocationData = [
-    { name: "Equity", value: 35 },
-    { name: "Private Equity", value: 22 },
-    { name: "Fixed Income", value: 18 },
-    { name: "Private Debt", value: 12 },
-    { name: "Real Estate", value: 8 },
+    { name: "Equity", value: 38 },
+    { name: "Private Equity", value: 25 },
+    { name: "Fixed Income", value: 15 },
+    { name: "Private Debt", value: 10 },
+    { name: "Real Estate", value: 7 },
     { name: "Commodities", value: 3 },
     { name: "Cash", value: 2 },
   ]
 
-  // Asset Allocation Trend data
+  // Asset Allocation Trend data (percentages that add up to 100% for each date)
   const assetAllocationTrendData = [
     {
-      date: "9/30/2022",
-      Equity: 32,
-      "Private Equity": 20,
-      "Fixed Income": 19,
-      "Private Debt": 13,
-      "Real Estate": 9,
-      Commodities: 4,
-      Cash: 3,
-    },
-    {
-      date: "12/31/2022",
-      Equity: 33,
-      "Private Equity": 21,
-      "Fixed Income": 18,
-      "Private Debt": 13,
-      "Real Estate": 9,
-      Commodities: 3,
-      Cash: 3,
-    },
-    {
-      date: "3/31/2023",
-      Equity: 34,
-      "Private Equity": 22,
-      "Fixed Income": 18,
-      "Private Debt": 12,
-      "Real Estate": 8,
-      Commodities: 3,
-      Cash: 3,
-    },
-    {
-      date: "6/30/2023",
-      Equity: 36,
-      "Private Equity": 22,
+      date: "4/30/2023",
+      Equity: 35,
+      "Private Equity": 23,
       "Fixed Income": 17,
       "Private Debt": 12,
       "Real Estate": 8,
@@ -92,25 +74,95 @@ export default function Dashboard() {
       Cash: 2,
     },
     {
-      date: "9/30/2023",
-      Equity: 35,
-      "Private Equity": 22,
-      "Fixed Income": 18,
-      "Private Debt": 12,
+      date: "7/31/2023",
+      Equity: 36,
+      "Private Equity": 24,
+      "Fixed Income": 16,
+      "Private Debt": 11,
       "Real Estate": 8,
+      Commodities: 3,
+      Cash: 2,
+    },
+    {
+      date: "10/31/2023",
+      Equity: 37,
+      "Private Equity": 24,
+      "Fixed Income": 16,
+      "Private Debt": 10,
+      "Real Estate": 8,
+      Commodities: 3,
+      Cash: 2,
+    },
+    {
+      date: "1/31/2024",
+      Equity: 38,
+      "Private Equity": 25,
+      "Fixed Income": 15,
+      "Private Debt": 10,
+      "Real Estate": 7,
+      Commodities: 3,
+      Cash: 2,
+    },
+    {
+      date: "4/30/2024",
+      Equity: 39,
+      "Private Equity": 25,
+      "Fixed Income": 14,
+      "Private Debt": 10,
+      "Real Estate": 7,
+      Commodities: 3,
+      Cash: 2,
+    },
+    {
+      date: "7/31/2024",
+      Equity: 38,
+      "Private Equity": 26,
+      "Fixed Income": 14,
+      "Private Debt": 10,
+      "Real Estate": 7,
+      Commodities: 3,
+      Cash: 2,
+    },
+    {
+      date: "10/31/2024",
+      Equity: 37,
+      "Private Equity": 26,
+      "Fixed Income": 15,
+      "Private Debt": 10,
+      "Real Estate": 7,
+      Commodities: 3,
+      Cash: 2,
+    },
+    {
+      date: "1/31/2025",
+      Equity: 38,
+      "Private Equity": 25,
+      "Fixed Income": 15,
+      "Private Debt": 10,
+      "Real Estate": 7,
+      Commodities: 3,
+      Cash: 2,
+    },
+    {
+      date: "4/30/2025",
+      Equity: 38,
+      "Private Equity": 25,
+      "Fixed Income": 15,
+      "Private Debt": 10,
+      "Real Estate": 7,
       Commodities: 3,
       Cash: 2,
     },
   ]
 
-  // Unrealized G/L by Asset Class data
+  // Unrealized G/L by Asset Class data (updated values)
   const unrealizedGLData = [
-    { name: "Private Equity", value: 105 },
-    { name: "Equity", value: 85 },
-    { name: "Private Debt", value: 65 },
-    { name: "Fixed Income", value: 45 },
-    { name: "Commodities", value: -25 },
-    { name: "Real Estate", value: -50 },
+    { name: "Private Equity", value: 125 },
+    { name: "Equity", value: 95 },
+    { name: "Private Debt", value: 75 },
+    { name: "Fixed Income", value: 35 },
+    { name: "Real Estate", value: -15 },
+    { name: "Commodities", value: -35 },
   ]
 
   // Colors for charts
@@ -127,7 +179,7 @@ export default function Dashboard() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <Header/>
+     <Header />
 
       {/* Portfolio Filter Bar */}
       <div className="border-b border-gray-200 bg-white px-6 py-3">
@@ -139,7 +191,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center">
               <span className="mr-2 text-sm font-medium text-gray-600">As of Date:</span>
-              <span className="text-sm text-gray-800">09/30/2023</span>
+              <span className="text-sm text-gray-800">04/30/2025</span>
             </div>
             <div className="flex items-center">
               <span className="mr-2 text-sm font-medium text-gray-600">Security Type:</span>
@@ -168,7 +220,7 @@ export default function Dashboard() {
           <div className="rounded-lg border bg-white p-4 shadow-sm">
             <div className="mb-2 text-sm font-medium text-gray-500">Market Value</div>
             <div className="flex items-baseline">
-              <div className="text-2xl font-bold">$3.45 B</div>
+              <div className="text-2xl font-bold">$4.42 B</div>
               <div className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
                 <svg
                   className="h-3 w-3 self-center"
@@ -184,7 +236,7 @@ export default function Dashboard() {
                     d="M5 10l7-7m0 0l7 7m-7-7v18"
                   ></path>
                 </svg>
-                <span className="ml-1">(+5.21%)</span>
+                <span className="ml-1">(+7.85%)</span>
               </div>
             </div>
           </div>
@@ -193,7 +245,7 @@ export default function Dashboard() {
           <div className="rounded-lg border bg-white p-4 shadow-sm">
             <div className="mb-2 text-sm font-medium text-gray-500">Net Cash Flows (YTD)</div>
             <div className="flex items-baseline">
-              <div className="text-2xl font-bold">$182.45 M</div>
+              <div className="text-2xl font-bold">$245.67 M</div>
               <div className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
                 <svg
                   className="h-3 w-3 self-center"
@@ -209,7 +261,7 @@ export default function Dashboard() {
                     d="M5 10l7-7m0 0l7 7m-7-7v18"
                   ></path>
                 </svg>
-                <span className="ml-1">(+23.75%)</span>
+                <span className="ml-1">(+18.42%)</span>
               </div>
             </div>
           </div>
@@ -218,7 +270,32 @@ export default function Dashboard() {
           <div className="rounded-lg border bg-white p-4 shadow-sm">
             <div className="mb-2 text-sm font-medium text-gray-500">Unrealized G/L</div>
             <div className="flex items-baseline">
-              <div className="text-2xl font-bold">$195.32 M</div>
+              <div className="text-2xl font-bold">$280.15 M</div>
+              <div className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
+                <svg
+                  className="h-3 w-3 self-center"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 10l7-7m0 0l7 7m-7-7v18"
+                  ></path>
+                </svg>
+                <span className="ml-1">(+15.73%)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Cash */}
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <div className="mb-2 text-sm font-medium text-gray-500">Cash</div>
+            <div className="flex items-baseline">
+              <div className="text-2xl font-bold">$88.44 M</div>
               <div className="ml-2 flex items-baseline text-sm font-semibold text-red-600">
                 <svg
                   className="h-3 w-3 self-center"
@@ -234,32 +311,7 @@ export default function Dashboard() {
                     d="M19 14l-7 7m0 0l-7-7m7 7V3"
                   ></path>
                 </svg>
-                <span className="ml-1">(-8.32%)</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Cash */}
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
-            <div className="mb-2 text-sm font-medium text-gray-500">Cash</div>
-            <div className="flex items-baseline">
-              <div className="text-2xl font-bold">$72.18 M</div>
-              <div className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
-                <svg
-                  className="h-3 w-3 self-center"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 10l7-7m0 0l7 7m-7-7v18"
-                  ></path>
-                </svg>
-                <span className="ml-1">(+4.53%)</span>
+                <span className="ml-1">(-2.15%)</span>
               </div>
             </div>
           </div>
