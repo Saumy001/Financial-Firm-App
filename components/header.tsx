@@ -9,12 +9,22 @@ export function Header() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isDashboardPage = pathname === "/dashboard";
+  const dashboardRoutes = ["/dashboard", "/my-dashboard", "/fund", "/portfolio", "/performance", "/investors"];
+  const isDashboardSection = dashboardRoutes.includes(pathname);
 
-  useEffect(() => {
-    console.log('Route changed to:', pathname);
-    // You can add more logic here, like analytics or page state resets
-  }, [pathname]);
+  const getSelectedSection = (path: string) => {
+    if (dashboardRoutes.includes(path)) {
+      return "dashboard";
+    } else if (path === "/reporting") {
+      return "reporting";
+    } else if (path === "/insights") {
+      return "insights";
+    } else {
+      return "-";
+    }
+  };
+
+  const selectedSection = getSelectedSection(pathname);
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
@@ -23,13 +33,25 @@ export function Header() {
     }
   };
 
+  useEffect(() => {
+    console.log("Route changed to:", pathname);
+  }, [pathname]);
+
+  const dashboardNavItems = [
+    { label: "My Dashboard", path: "/my-dashboard" },
+    { label: "Fund", path: "/fund" },
+    { label: "Portfolio", path: "/portfolio" },
+    { label: "Performance", path: "/performance" },
+    { label: "Investors", path: "/investors" },
+  ];
+
   return (
     <header className="flex h-16 items-center justify-between bg-blue-900 px-4">
       <div className="flex items-center">
         <div className="mr-4 text-white">
           <ClipboardList
             size={24}
-            onClick={() => router.push('/reporting')}
+            onClick={() => router.push("/reporting")}
             className="cursor-pointer"
           />
         </div>
@@ -38,10 +60,12 @@ export function Header() {
           <div className="relative">
             <select
               className="appearance-none bg-[#325c98] pr-8 text-white outline-none"
-              defaultValue={pathname.replace('/', '') || "-"}
+              value={selectedSection}
               onChange={handleSelect}
             >
-              <option value="-" disabled>Select a page</option>
+              <option value="-" disabled>
+                Select a page
+              </option>
               <option value="reporting">Reporting</option>
               <option value="dashboard">Dashboard</option>
               <option value="insights">Insights</option>
@@ -50,38 +74,21 @@ export function Header() {
           </div>
         </div>
 
-        {isDashboardPage && (
+        {isDashboardSection && (
           <nav className="flex space-x-6 text-white text-sm font-medium ml-[400px]">
-            <button
-              onClick={() => router.push('/dashboard')}
-              className="hover:text-blue-300 transition"
-            >
-              Dashboard
-            </button>
-            <button
-              onClick={() => router.push('/fund')}
-              className="hover:text-blue-300 transition"
-            >
-              Fund
-            </button>
-            <button
-              onClick={() => router.push('/portfolio')}
-              className="hover:text-blue-300 transition"
-            >
-              Portfolio
-            </button>
-            <button
-              onClick={() => router.push('/performance')}
-              className="hover:text-blue-300 transition"
-            >
-              Performance
-            </button>
-            <button
-              onClick={() => router.push('/investors')}
-              className="hover:text-blue-300 transition"
-            >
-              Investors
-            </button>
+            {dashboardNavItems.map(({ label, path }) => (
+              <button
+                key={path}
+                onClick={() => router.push(path)}
+                className={`transition border-b-2 ${
+                  pathname === path
+                    ? "border-white text-white"
+                    : "border-transparent hover:border-blue-300"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </nav>
         )}
       </div>
@@ -108,8 +115,12 @@ export function Header() {
             >
               User Profile
             </div>
-            <div className="hover:bg-gray-100 p-2 cursor-pointer">Settings</div>
-            <div className="hover:bg-gray-100 p-2 cursor-pointer">Logout</div>
+            <div className="hover:bg-gray-100 p-2 cursor-pointer">
+              Settings
+            </div>
+            <div className="hover:bg-gray-100 p-2 cursor-pointer">
+              Logout
+            </div>
           </div>
         )}
       </div>
