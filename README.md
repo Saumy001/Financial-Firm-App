@@ -1,12 +1,12 @@
-# Financial Firm App 🧾
+# Financial Firm App 
 
 A responsive, modern financial dashboard built with Vercel v0, designed to help financial firms display dynamic reports, portfolios, income statements, and dashboards. This app is built for scalability and reusability — making onboarding easier for future developers.
 
-## 🌐 Live Demo
+##  Live Demo
 
 🔗 [financial-firm-app.vercel.app](https://financial-firm-app.vercel.app/)
 
-## 📂 GitHub Repo
+## GitHub Repo
 
 🔗 [github.com/Saumy001/Financial-Firm-App](https://github.com/Saumy001/Financial-Firm-App)
 
@@ -17,12 +17,12 @@ A responsive, modern financial dashboard built with Vercel v0, designed to help 
 - [Next.js (App Router)](https://nextjs.org/docs/app)
 - [Vercel v0 (Generated Code + Customization)](https://vercel.com)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS (if used)]
+- [Tailwind CSS](https://tailwindcss.com/)
 - [Vercel Hosting](https://vercel.com)
 
 ---
 
-## 📦 Features
+##  Features
 
 - 📊 Modular dashboards with real-time financial report structure
 - 🔁 Reusable UI components (e.g., Header, Profile Card, Reporting Layout)
@@ -33,7 +33,7 @@ A responsive, modern financial dashboard built with Vercel v0, designed to help 
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the repo
 
@@ -58,7 +58,7 @@ npm run dev
 
 ---
 
-## 📁 Folder Structure
+##  Folder Structure
 
 ```
 /app
@@ -89,7 +89,7 @@ npm run dev
 
 ---
 
-## 🧩 Reusable Components
+## Reusable Components
 
 This project includes common UI pieces in `/components/ui/`, such as:
 
@@ -104,13 +104,13 @@ These are built to be reused across dashboard and reporting views.
 
 ---
 
-## 🔧 Environment Variables
+##  Environment Variables
 
 Currently no API keys or `.env` files are required.
 
 ---
 
-## 👥 Contributing
+## Contributing
 
 This project is maintained for internal use, but contributions from team members are welcome.
 
@@ -122,13 +122,13 @@ If you're a new developer onboarding this project:
 
 ---
 
-## 📄 License
+## License
 
 This project is private and intended for internal use only.
 
 ---
 
-## 🧠 Notes
+## Notes
 
 - Originally scaffolded via Vercel v0 from a screenshot-based AI starter.
 - UI and layout have been heavily customized from the starter to better fit the financial firm's branding and data flow needs.
