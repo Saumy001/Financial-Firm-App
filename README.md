@@ -22,6 +22,17 @@ A responsive, modern financial dashboard built with Vercel v0, designed to help 
 
 ---
 
+## 🚀 How This Project Was Built
+
+- The initial code was generated using **Vercel v0** — an AI tool that converts UI screenshots into functional React/Next.js code.
+- I provided screenshots of a similar finance dashboard application to Vercel v0.
+- It generated starter UI code, which I then customized extensively:
+  - Defined **custom routing** using `router.push()` for navigation.
+  - Created reusable components for common UI elements.
+  - Designed layouts for dashboards, reports, and user profiles from scratch.
+
+---
+
 ##  Features
 
 - 📊 Modular dashboards with real-time financial report structure
